@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausplan Reiter</title>
+    <script>
+        setInterval(function () {
+            location.reload()
+        }, 3000);
+
+        function schalte_schaltflaeche_um(element) {
+            var status = element.classList.contains("an");
+            if (status) {
+                element.classList.remove("an");
+                element.classList.add("aus");
+            }
+            else {
+                element.classList.remove("aus");
+                element.classList.add("an");
+            }
+        }
+    </script>
+    <style>
+        #hausplan {
+            position: relative;
+            height: 700px;
+        }
+
+        .lampen {
+            list-style-type: none;
+
+        }
+
+        .lampe {
+            position: absolute;
+            background-color: honeydew;
+            padding: 2px 20px;
+        }
+
+        .indicator {
+            border-radius: 100px;
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            cursor: pointer;
+        }
+
+        .lampe * {
+            display: inline-block;
+        }
+
+        .lampe p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .an {
+            background-color: green;
+        }
+
+        .aus {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hausplan">
+        <img src="hausplan.jpg" style="position: absolute; height: 100%" />
+        <ul class="lampen">
+            <li class="lampe" style="top:80px; left:40px;">
+                <div class="indicator an" onclick="schalte_schaltflaeche_um(this)"></div>
+                <p>LED 1</p>
+
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

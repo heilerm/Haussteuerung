@@ -1,0 +1,104 @@
+<!doctype HTML>
+<html>
+
+<head>
+    <title>aus Codedamn HTML Playground mit einer Frage zu </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="/style.css" /> -->
+
+</head>
+
+<body>
+    <h1>Welcome to codedamn</h1>
+    <p>Hey there! This is a HTML/CSS/JS playground!</p>
+    <ul>
+        <li>You can edit these files....!</li>
+        <li>You can play with CSS/JS files</li>
+        <li>You can create files and folders here</li>
+        <li>Feel free to use it as your local development environment</li>
+        <li>hello world</li>
+    </ul>
+
+    <div id="time">Time right now: <span></span></div>
+    <!-- <script src="https://bit.ly/codedamn-web-console"></script> -->
+    <script src="script_fuer_frage_aus_StackOverflow.js"> </script>
+    <!-- Es muss "./<pfad...> heißen  oder ohne "./" davor das bedeutet im gleichen Vrz die Datei script_fuer_frage_... ansprechen
+        Angaben hierzu in https://wiki.selfhtml.org/wiki/HTML/Tutorials/Links/Referenzieren_in_HTML
+        bsp.: <img src="//example.com/images/logo.png" alt="">
+        die zwei "//" Am Anfang bedeuten rufe die example.com Seite mit dem selben Protokoll z.B. HTTPs auf wie die Seite, die 
+        das img ruft selbst. Sollte man nicht verwenden!!
+        
+        Mit absoluten(!) Pfadangaben relativ zum Basis-URI referenzieren. Das ist so was: "/" oder "/index.html
+        In https://wiki.selfhtml.org/wiki/HTML/Tutorials/Links/Referenzieren_in_HTML.html ist der Teil 
+        wiki/HTML/Tutorials/Links/Referenzieren_in_HTML.html eine absolute Pfadangabe relativ zur 
+        Basis-URI https://wiki.selfhtml.org/"
+        Beispiel
+        /
+        /index.htm
+        /index.htm#impressum
+        /hintergrund.gif
+        /praesentation.pdf
+        /cgi-bin/suche.cgi?ausdruck=Hasenjagd
+        /search?hl=de&safe=off&q=Stefan+M%FCnz&lr=
+        Der erste Schrägstrich hinter dem Basis-URI steht für das Wurzelverzeichnis des jeweiligen Internet-Services. 
+        Es handelt sich meistens nicht um das tatsächliche Wurzelverzeichnis des Rechners oder der Festplatte, 
+        auf die Sie da zugreifen. Bei Web-Servern ist beispielsweise einstellbar, welches tatsächliche Verzeichnis 
+        dem Web-Wurzelverzeichnis entsprechen soll.
+
+        Mit relativen(!) Pfadangaben relativ zum Basis-URI referenzieren
+        Diese Variante können Sie wählen, wenn Sie den jeweils aktuellen URI als Bezugs-URI wählen. 
+        Dann können Sie von hieraus relativ adressieren. 
+        Die HTML-Datei mit dem URI http://de.selfhtml.org/html/allgemein/referenzieren.htm enthält beispielsweise zum
+        Referenzieren einer Grafik folgende Angabe: ../../src/logo.gif. Das bedeutet: gehe zwei Verzeichnisse nach oben, 
+        von dort aus ins Unterverzeichnis src und dort findest du die Datei logo.gif. Absolut gesehen hat diese Datei also 
+        den URI http://de.selfhtml.org/src/logo.gif.
+        Diese Form der relativen Adressierung ist innerhalb von Web-Projekten sehr zu empfehlen. Der Grund ist, dass Sie
+        das Web-Projekt auf diese Weise problemlos an eine andere Adresse verschieben können, und trotzdem funktionieren 
+        noch alle projektinternen Verweise und Grafikreferenzen. Gerade wenn Sie Ihr Projekt auch mal auf CD-ROM oder 
+        anderen Medien veröffentlichen wollen, ist die relative Adressierung ein Muss.
+        Beispiel
+        ./
+        farben.htm
+        ./farben.htm
+        bilder/grafik.gif
+        ./bilder/grafik.gif
+        ../
+        ../../../../woanders/datei.htm
+        Eine Datei im gleichen Verzeichnis wie dem aktuellen können Sie einfach durch Angabe des Dateinamens referenzieren 
+        – im obigen Beispiel etwa die Datei farben.htm. Das aktuelle Verzeichnis referenzieren Sie durch 
+        ./ – also einem Punkt, gefolgt von einem Schrägstrich. Die Adressierung von farben.htm und ./farben.htm im
+        obigen Beispiel hat also den gleichen Effekt.
+
+        Eine Angabe wie bilder/grafik.gif referenziert eine Datei namens grafik.gif im Verzeichnis bilder, 
+        das ein Unterverzeichnis des aktuellen Verzeichnisses ist. Die Notation ./bilder/grafik.gif hat wieder den 
+        gleichen Effekt wie bilder/grafik.gif.
+
+        Mit ../ referenzieren Sie das Verzeichnis über dem aktuellen Verzeichnis, egal wie es heißt. 
+        Mit ../../ referenzieren Sie das Verzeichnis über dem Verzeichnis über dem aktuellen Verzeichnis usw. 
+        Von jedem der so adressierten Verzeichnisse können Sie wieder auf deren Unterverzeichnisse zugreifen, 
+        wie im letzten der obigen Beispiele gezeigt.
+    -->
+    <!--<script>
+        const timer = document.querySelector('#time span'); setInterval(function () {
+            timer.innerText = new
+                Date().toLocaleString();
+        }, 1000);
+
+        const a = {
+            i: 1,
+            //toString: function () {   Erklärung siehe script_fuer_frage_aus_StackOverflow.js
+            valueOf: function () {
+                console.log('a.i++: ', a.i);
+                return a.i++;
+            }
+        }
+        if (a == 1 && a == 2 && a == 3 && a == 4) {
+            console.log('Hello World!');
+        }
+    </script>
+-->
+
+</body>
+
+</html>

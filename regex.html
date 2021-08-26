@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>regex </title>
+    <script>
+
+    /* aus: 
+    https://www.w3schools.com/jsref/jsref_regexp_nfollow_not.asp
+
+    A regular expression is an object that describes a pattern of characters.
+    Regular expressions are used to perform pattern-matching and "search-and-replace" functions on text.
+
+    Syntax
+    /pattern/modifiers;
+    Example
+    var patt = /w3schools/i
+    Example explained:
+
+    /w3schools/i  is a regular expression.
+    w3schools  is a pattern (to be used in a search).
+    i  is a modifier (modifies the search to be case-insensitive). 
+    In JavaScript, regular expressions are often used with the two string methods: search() and replace().
+    The search() method uses an expression to search for a match, and returns the position of the match.
+    The replace() method returns a modified string where the pattern is replaced.
+    let text = "Visit W3Schools!";
+    let n = text.search("W3Schools");
+    The result in n will be: 6
+    weil an der Index Position 6 der gesuchte string enthalten ist
+    
+    Brackets are used to find a range of characters:
+
+    Expression	Description	Try it
+    [abc]	Find any of the characters between the brackets	
+    [^abc]	Find any character NOT between the brackets
+    [0-9]	Find any of the digits between the brackets	
+    [^0-9]	Find any character NOT between the brackets (any non-digit)
+    (x|y)	Find any of the alternatives separated with |	
+    
+
+
+
+
+
+
+    Metacharacters are characters with a special meaning:
+
+    
+    Metacharacter	Description
+.	Find a single character, except newline or line terminator
+    \w	Find a word character 
+    //A word character is a character from a-z, A-Z, 0-9, including the _ (underscore) character. // 
+    var patt = /\w/i
+    Bsp.: 
+    var str = "Give 100%!"; 
+    var patt1 = /\w/g;
+    var result = str.match(patt1);
+    result = G,i,v,e,1,0,0, (blank und ! fehlen)
+    \W	Find a non-word character
+    Bsp.: 
+    var str = "Give   100%!";
+    var patt1 = /\W/g;
+    var result = str.match(patt1); 
+    result = , , ,%,! (blank fehlt nicht, das sind die ersten 3 Kommas, davor stehen die 3 blanks)
+    \d	Find a digit    
+    var str = "Give 100%!"; 
+    var patt1 = /\d/g;
+    var result = str.match(patt1);
+    result = 1,0,0
+    \D	Find a non-digit character
+    \s	Find a whitespace character
+    new RegExp("\\s", "g") .der \ in \s ist selbst mit \ escaped
+    or simply:
+    /\s/g
+    \S	Find a non-whitespace character
+    \b	Find a match at the beginning/end of a word, beginning like this: \bHI, end like this: HI\b
+    var str = "HELLO, LOOK AT YOU!"; 
+    var patt1 = /\bLO/;
+    var result = str.search(patt1);
+    result: 7 an Position 7 ist das erste Mal ein LO am Wortanfang (Index 0 = erste Position)
+    \B	Find a match, but not at the beginning/end of a word
+    \0	Find a NULL character
+    \n	Find a new line character
+    \f	Find a form feed character
+    \r	Find a carriage return character
+    \t	Find a tab character
+    \v	Find a vertical tab character
+    \xxx	Find the character specified by an octal number xxx
+    \xdd	Find the character specified by a hexadecimal number dd
+    \udddd	Find the Unicode character specified by a hexadecimal number dddd
+
+    Quantifier	Description
+    n+	Matches any string that contains at least one n
+    n*	Matches any string that contains zero or more occurrences of n
+    n?	Matches any string that contains zero or one occurrences of n
+    n{X}	Matches any string that contains a sequence of X n's
+    n{X,Y}	Matches any string that contains a sequence of X to Y n's
+    n{X,}	Matches any string that contains a sequence of at least X n's
+    n$	Matches any string with n at the end of it
+    ^n	Matches any string with n at the beginning of it
+    ?=n	Matches any string that is followed by a specific string n
+    ?!n	Matches any string that is not followed by a specific string n
+
+    Example
+    Do a global search for a substring that contains a sequence of four digits:
+
+    var str = "100, 1000 or 10000?";
+    var patt1 = /\d{4}/g;
+
+    Example: Do a global search for a substring that contains a sequence of three to four digits:
+
+    var str = "100, 1000 or 10000?";
+    var patt1 = /\d{3,4}/g;
+    var result = str.match(patt1);
+    document.getElementById("demo").innerHTML = result; gibt alle 3 strings nacheinander zurück: 100, 1000, 10000
+    Example
+    Do a global search for a substring that contains a sequence of at least three digits:
+
+    var str = "100, 1000 or 10000?";
+    var patt1 = /\d{3,}/g;
+    var result = str.match(patt1);
+    document.getElementById("demo").innerHTML = result; auch wieder alle 3 
+
+    Example
+    Do a global search for "is" at the end of a string:
+
+    var str = "Is this his";
+    var patt1 = /is$/g;
+    var result = str.match(patt1);
+    document.getElementById("demo").innerHTML = result;
+
+    Example
+    Do a global, case insensitive search for "is" not followed by " all":
+
+    var str = "Is this all there is";
+    var patt1 = /is(?! all)/gi;
+    var result = str.match(patt1);
+    document.getElementById("demo").innerHTML = result; => Is,is (die beiden am Anfang und am Ende)
+    */
+
+    </script>
+
+<style>
+.example {
+  color: red;
+  padding: 5px;
+  width: 150px;
+  font-size: 15px;
+};
+</style>
+</head>
+<body>
+
+<p>Click the button to see how many attributes the button element has:</p>
+
+<button onclick="myFunction()" class="example">Try it</button>
+
+<p><strong>Note:</strong> In Internet Explorer 8 and earlier, the attributes property will return a collection of all possible attributes for the element, and will, in this example, display a much higher number than 1.</p>
+
+<p>The result should be 2 (the button element's onclick and class attribute).</p>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<script>
+    function myFunction() {
+      var x = document.getElementsByTagName("button")[0].attributes.length;
+      document.getElementById("demo").innerHTML = x;
+      var el = document.getElementsByTagName("button")[0];
+      var nodes=[], values=[];
+         for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++){ 
+        // for (var att, i = 0, n = el.attributes.length; i < n; i++){//
+        att = atts[i];
+        nodes.push(att.nodeName);
+        values.push(att.nodeValue);
+        document.getElementById("demo2").innerHTML = nodes;
+        document.getElementById("demo3").innerHTML = values;
+        };
+    };
+    </script>
+
+
+</body>
+</html>

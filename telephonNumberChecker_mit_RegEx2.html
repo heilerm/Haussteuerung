@@ -1,0 +1,395 @@
+<!-- NumberChecker mit Regex -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telephone Number Checker mit RegExt</title>
+    <script>
+        /* Globale Variablen sind im gesamten Dokument gültig und stehen jederzeit zur Verfügung. 
+           Wenn innerhalb von Funktionen Variablen ohne ein lokal machendes Schlüsselwort (var, let oder const)
+           deklariert werden, dann sind diese Variablen global. 
+           Wird eine var Deklaration außerhalb einer Funktion ausgeführt, erzeugt das ebenfalls eine 
+           globale Variable.
+           heute wo kein IE mehr unterstützt ist und damit überall let unterstützt ist, sollte man nur let oder const verwenden*/
+        var returnvalue = "true";
+        function telephoneCheck(str) {
+            /* check if there is a non-numeric value in it*/
+            let allowedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "(", ")"];
+            let onlyNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            let notAllowedValues = ["a", "b", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",];
+            let numberArray = [];
+            let newArray = [];
+            var validNumber = true;
+            // check for numbers plus "(", ")" and "-" // 
+            /*        
+            [abc]	Find any of the characters between the brackets	
+            [^abc]	Find any character NOT between the brackets
+            [0-9]	Find any of the digits between the brackets	
+            [^0-9]	Find any character NOT between the brackets (any non-digit)
+            (x|y)	Find any of the alternatives separated with |	
+            */
+            /* 
+            prüfe, ob es außer 0-9 und "(", ")" und "-" gibt */
+            /* result = str.match(/[^(0-9) |^-()]/)  Das "-" im 2ten Teil interpretiert er als Angabe einer Range, wielinks bei 0-9, daher das "-" mit \ escapen */
+            /* result = str.match(/[^(0-9) | ^\-\()\s]/) /*- interpretiert es als Angabe einer Range, wie links bei 0-0, daher das "-" mit \ escapen */
+            /* result = str.match(/[^(0-9)^\\-\\()\s]/) /*- interpretiert es als Angabe einer Range, wie links bei 0-0, daher das "-" mit \ escapen */
+            /* am besten gleich console.log des regEx machen, da sieht man was er daraus macht */
+            var str1 = "re, gre-en, red, green, gren, gr, blue, yellow";
+            var str1 = "-1 (234)-567-8901"
+            var patt1 = /[a-z]|[A-Z]/g;
+            var patt2 = /[0-9]/g;
+            var patt3 = /[A-Z]-/g;
+            var patt4 = /[A-Z]&&\-/g;
+            var patt5 = /[a-zA-Z0-9 ()-]/g;
+            var patt6 = /[^a-zA-Z0-9 ()-]/g;
+            var patt7 = /[^0-9 ()-]/g;
+            var patt8 = /[^A-Z]|-/g;
+            var patt9 = /-/g;
+            var patt10 = /[0-9]-/g; /*findet Ziffer und anschließendes "-" */
+            var patt11 = /[0-9() -]/g; /*findet Ziffer oder anschließendes "-". Das ergibt dann ein Array mit allen Ziffern und den "-" */
+            var patt12 = /[A-Za-z]/g;   /*findet alle Groß- oder Kleinbuchstaben */
+            var patt13 = /[A-Z][a-z]/g;   /*findet nur was, wenn Groß und Kleinbuchstaben drin sind */
+            var patt15 = /[0-9][A-Z]/g; /* findet nur was wenn Ziffern gefolgt von Großbuchstaben kommen*/
+            var patt16 = /[(][)]/g; /* findet nur was wenn Ziffern gefolgt von Großbuchstaben kommen*/
+            var result = str1.search(patt1); /*result = -1, str = -1 (234) 567-8901 */
+            var result1 = str1.match(patt1); /*result1 = null, str = -1 (234) 567-8901 */
+            var result2 = str1.search(patt2); /*result2 = 1,  */
+            var result3 = str1.match(patt2); /*result3= Array(11) 12345678901 */
+            var result4 = str1.search(patt3); /*result4 = -1*/
+            var result5 = str1.match(patt3); /*result5 = null */
+            var result7 = str1.search(patt4); /*result7 = -1*/
+            var result8 = str1.match(patt4); /*result8 = -1 */
+            var result9 = str1.search(patt5); /*result9 = 0 */
+            var result10 = str1.match(patt5); /*result10 = Array(17) -1 (234) 567 8901 */
+            var result11 = str1.search(patt6); /*result = -1, */
+            var result12 = str1.match(patt6);  /*result = null */
+            var result13 = str1.search(patt7); /*result = -1,  */
+            var result14 = str1.match(patt7); /*result = null */
+            var result15 = str1.search(patt8); /*result = 0 */
+            var result16 = str1.match(patt8); /*result = (2),  ["-", "-"]*/
+            var result17 = str1.search(patt9); /*result = (2),  ["-", "-"]*/
+            var result18 = str1.match(patt9); /*result = (2),  ["-", "-"]*/
+            var result19 = str1.search(patt10); /*result = (2),  ["-", "-"]*/
+            var result20 = str1.match(patt10); /*result = (2),  ["-", "-"]*/
+            var result21 = str1.search(patt11); /*result = (2),  ["-", "-"]*/
+            var result22 = str1.match(patt11); /*result = (2),  ["-", "-"]*/
+            var result23 = str1.search(patt16); /*result = */
+            var result24 = str1.match(patt16); /*result = */
+
+
+            console.log("eingebener String:", str);
+            result = str.match(/[^(0-9)() -]/);
+
+            console.log("enthält ungültige Zeichen:", result);
+            if (result != null) {
+                console.log("enthält mindestes 1 gültiges Zeichen");
+                return false;
+
+            };
+
+            if (str[0] == "-") {/*erstes Zeichen = "-" */
+                console.log("enthält an erster Stelle ein  - ");
+                return false;
+            };
+            /* blank und "-" rausnehmen*/
+            let str_woblank = str.split(" ").join('');
+            console.log("str_woblank:", str_woblank);
+            let str_woblank_and_minus = str_woblank.split("-").join('');
+            console.log("str_woblank_and_minus:", str_woblank_and_minus);
+            /* jetzt kann gültige Länge = 13 sein z.B. 1(234)5678901 oder 10 sein z.B. 1234567890 oder 12 z.B. (123)4567890
+               oder 11 z.B. 12345678901 aus "1 234-567-8901" entstanden */
+            if (str_woblank_and_minus.length == 10 || str_woblank_and_minus.length == 11 || str_woblank_and_minus.length == 12 || str_woblank_and_minus.length == 13) {
+                console.log("Länge prinzipiell möglich:", str_woblank_and_minus.length);
+
+            }
+            else {
+                console.log("Nummer hat falsche Länge");
+                return false;
+
+            };
+            /*jetzt prüfen, ob es offene oder nicht geschlossene Klammern gibt*/
+            /* es kann sein, dass mehrmals offene und geschlossene Klammern eingegben wurden, z.B. (555)-55 555)  
+               habe keinen Befehl/methode gefunden, die alle Klammern "(", ")" findet
+               also drüber loopen*/
+            function char_count(str, letter) {
+                letter_Count = 0;
+                for (var position = 0; position < str.length; position++) {
+                    if (str.charAt(position) == letter) {
+                        letter_Count += 1;
+                    }
+                }
+                console.log("letter_Count von", letter, ":", letter_Count);
+                return letter_Count;
+            };
+            char_count(str_woblank_and_minus, "(");
+            if (letter_Count > 1) {
+                console.log(`"(" mehr als 1 mal gefunden:`, letter_Count, "mal");
+                return false;
+            };
+            char_count(str_woblank_and_minus, ")");
+            if (letter_Count > 1) {
+                console.log(`")" mehr als 1 mal gefunden:`, letter_Count, "mal");
+                return false;
+            };
+
+
+            parenLeft = str_woblank_and_minus.match(/[(+]/); /* zeigt nur das erste Auftreten von "(" an. Leider nicht alle, daher zuvor die Methode char_count(str, letter) */
+            parenRight = str_woblank_and_minus.match(/[)+]/); /* */
+            console.log("parenRight", parenRight);
+            console.log("parenLeft", parenLeft);
+            if (parenLeft == null && parenRight != null) {
+                console.log(`Eingabe mit ")" aber ohne "("  `);
+                return false;
+            };
+            if (parenRight == null && parenLeft != null) {
+                console.log(`Eingabe mit "(" aber ohne ")"  `);
+                return false;
+            };
+            /*jetzt gibt es nur noch gültige Zeichen und Längen 13 1(234)5678901 oder Länge 12 z.B. (234)5678901 oder Länge 10 z.B. 1234567890 
+              oder 11 z.B. 12345678901 aus "1 234-567-8901" entstanden*/
+            /*bei Länge von 13 muss es so was sein 1(234)5678901*/
+            /* prüfe, ob erste Stelle eine 1*/
+            if (str_woblank_and_minus.length == 13) {
+                if (str_woblank_and_minus[0] != 1) {
+                    console.log(`Eingabe hat keine führende 1 für USA/Kanada`);
+                    return false;
+                };
+            };
+            /*bei Länge von 12 muss es so was sein (234)5678901*/
+            /* prüfe, ob Index 0 = "(" und Index 4 = ")"*/
+            if (str_woblank_and_minus.length == 12) {
+                if ((str_woblank_and_minus[0] == "(") && (str_woblank_and_minus[4] == ")")) {
+                }
+                else {
+                    console.log(`Eingabe wurde ohne Klammern um die ersten 3 Stellen (area Code) gemacht`);
+                    return false;
+                };
+            };
+            /*bei Länge von 11 muss es so was sein 12345678901 entstanden aus "1 234-567-8901"*/
+            /* prüfe, ob Index 0 = "1"*/
+            if (str_woblank_and_minus.length == 11) {
+                if (str_woblank_and_minus[0] != "1") {
+                    console.log(`Eingabe mit Ländercode aber der ist nicht "1" für USA oder Kanada`);
+                    return false;
+                };
+            };
+            /*bei Länge von 10 muss es so was sein 2345678901 */
+            /* das ist alles oky*/
+            if (str_woblank_and_minus.length == 10) {
+
+                console.log(`Eingabe korrekt, keine Klammern und 10 gültige Ziffern`);
+
+
+            };
+            console.log("return true");
+            return true;
+            result = str.match(patt2); /* jetzt habe ich nur Ziffern */
+            /* auf Länge 10 und 11 prüfen, nur das ist erlaubt */
+            if (result.length == 11 || result.length == 10) {/* ist keine 1 am Anfang, wenn Länge = 11 Zeichen 2 444 333 2222 (ohne die Blanks) */
+                console.log("Ziffernfolge hat Länge 10 oder 11")
+            }
+            else {
+
+            };
+
+
+            if (result.length == 11) { /* wenn Länge 11 */
+                if (str[0] != "1") {/* ist keine 1 am Anfang, wenn Länge = 11 Zeichen 2 444 333 2222 (ohne die Blanks) */
+                    console.log("enthält an erster Stelle keine 1 und hat Länge 11 und besteht nur aus Ziffern");
+                    return false;
+                };
+                /* wenn Länge 11 dann blanks und "-" herausnehmen */
+                let str_woblank = str.split(" ").join('');
+                console.log("str_woblank:", str_woblank);
+                let str_woblank_and_minus = str_woblank.split("-").join('');
+                console.log("str_woblank_and_minus:", str_woblank_and_minus);
+                /* wenn Länge 11 und es ist eine 1 am Anfang darf noch (xxx) folgen */
+                if (str_woblank_and_minus[1] == "(" && str_woblank_and_minus[5] == ")") {/* ist keine 1 am Anfang, Länge = 11 Zeichen und ein "(" an Stelle nach der 1 und ")" an 5ter Stelle  (444) 333 2222 (ohne die Blanks) */
+                    console.log(`enthält an erster Stelle ein "(" und an 5ter Stelle ein ")" und hat richtige Länge 10`);
+                    /*return false;
+                      dann die Klammern wegnehmen*/
+                    strRepl = str_woblank_and_minus.replace("(", "");
+                    strRepl2 = strRepl.replace(")", "");
+                };
+                /* jetzt kann noch ein "(" oder ein ")" übrig geblieben sein*/
+                result_nach_repl_klammern = strRepl2.match(/[()]/);
+                if (result_nach_repl_klammern != null) {
+                    console.log("result_nach_repl_klammern", result_nach_repl_klammern);
+                    console.log(`enthält fehlende "(" oder fehlende ")"`);
+                    return false;
+                };
+                console.log(result);
+                if (result != null) {
+                    console.log("enthält mindestes 1 gültiges Zeichen");
+                    return false;
+
+                };
+
+            };
+
+
+
+
+            parenLeft = str.match(/[(]/);
+            parenRight = str.match(/[)]/);
+            if (parenLeft == null && parenRight != null) {
+                console.log(`Eingabe mit ")" aber ohne "("  `);
+                return false;
+            };
+            if (parenRight == null && parenLeft != null) {
+                console.log(`Eingabe mit "(" aber ohne ")"  `);
+                return false;
+            };
+
+
+
+            /*alle nicht numerischen Zeichen wegnehmen und prüfen, ob Länge = 10 oder 11 dann ist es ein 1 + 10 stellen oder ohne 1  */
+            // \W	Find a non-word character //
+            // A word character is a character from a-z, A-Z, 0-9, including the _ (underscore) character.//
+            let non_wordChar = str.search(/\W/);
+            console.log("non_wordChar = :", non_wordChar);
+            var matches = str.match(/\d+/g);
+            if (matches != null) { /*es kann sein, dass matches nur ein 10 stelliges Feld ist, es also nur ein matches[0] gibt */
+                if (matches.length == 1 && matches[0].length == 10) {
+                    let match1 = str.substring(0, 3);
+                    let match2 = str.substring(3, 6);
+                    let match3 = str.substring(6, 10);
+                }
+                else if (matches.length == 1 && matches[0].length != 10) {
+                    console.log(`Eingabe mit ungültiger Länge.Nur 1 Nummernbestandteil und nicht Länge 10`);
+                    return false;
+                }
+                else if (matches.length == 2) {
+                    console.log(`Eingabe mit nur 2 Nummernbestandteilen `);
+                    return false;
+                }
+                else if (matches.length == 3) {
+                    console.log('numbers in str sind:', matches);
+                    console.log('Anzahl numbers in str:', matches.length);
+                    console.log('Erstes Element in matches:', matches[0]);
+                    console.log('Länge des ersten Element in matches:', matches[0].length);
+                    console.log('Inhalt des ersten Elements in matches:', matches[0][0]);
+                    console.log('Inhalt des zweiten  Elements in matches:', matches[1]);
+                    console.log('Inhalt des ersten Elements im 2ten Block in matches:', matches[1][0]);
+                    console.log('Inhalt des dritten  Elements in matches:', matches[2]);
+                    console.log('Inhalt des dritten  Elements in matches und da der erste Wert:', matches[2][0]);
+                    console.log('Länge des dritten Elements in matches:', matches[2].length);
+
+                    if (matches[0].length + matches[1].length + matches[2].length >= 11) {
+                        console.log("Eingabe ist zu lang");
+                        return false;
+                    };
+                };
+
+
+            };
+            /*else Zweig gibt es nicht, da oben schon gepüft, ob es mind. 1 ungültiges Zeichen gibt*/
+            console.log('return true:');
+            return true;
+            /* result länge 11 jetzt erledigt*/
+
+            if (result.length == 10) { /* wenn Länge 10 */
+                /* wenn Länge 10 dann blanks und "-" herausnehmen */
+                let str_woblank = str.split(" ").join('');
+                console.log("str_woblank:", str_woblank);
+                let str_woblank_and_minus = str_woblank.split("-").join('');
+                console.log("str_woblank_and_minus:", str_woblank_and_minus);
+
+                /* wenn Länge 10 und es ist eine darf noch (xxx) folgen */
+                if (str_woblank_and_minus[0] == "(" && str_woblank_and_minus[4] == ")") {/* Länge = 10 Zeichen und ein "(" an erster Stelle  und ")" an 5ter Stelle
+                                                                                        (444) 333 2222 (ohne die Blanks) */
+                    console.log(`enthält an erster Stelle ein "(" und an 5ter Stelle ein ")" und hat richtige Länge 10`);
+                    /*return false;
+                      dann die Klammern wegnehmen*/
+                    strRepl = str_woblank_and_minus.replace("(", "");
+                    strRepl2 = strRepl.replace(")", "");
+                };
+                /* jetzt kann noch ein "(" oder ein ")" übrig geblieben sein*/
+                result_nach_repl_klammern = strRepl2.match(/[()]/);
+                if (result_nach_repl_klammern != null) {
+                    console.log("result_nach_repl_klammern", result_nach_repl_klammern);
+                    console.log(`enthält fehlende "(" oder fehlende ")"`);
+                    return false;
+                };
+ 
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <input type="button" onclick="telephoneCheck(`1 234-567-8901`)" value="1 234-567-8901">
+    <input type="button" onclick="telephoneCheck(`1 (234) 567-8901`)" value="1 (234) 567-8901">
+    <input type="button" onclick="telephoneCheck(`(234 567-8901`)" value="(234 567-8901">
+    <input type="button" onclick="telephoneCheck(`1234567890`)" value="1234567890">
+    <input type="button" onclick="telephoneCheck(`123-456-7890`)" value="123-456-7890">
+    <input type="button" onclick="telephoneCheck(`(123)456-7890`)" value="(123)456-7890">
+    <input type="button" onclick="telephoneCheck(`123-(456-78901`)" value="123-(456-78901">
+    <input type="button" onclick="telephoneCheck(`123**&!!asdf#`)" value="123**&!!asdf#">
+    <input type="button" onclick="telephoneCheck(`-1 (757) 622-7382`)" value="-1 (757) 622-7382">
+    <input type="button" onclick="telephoneCheck(`-a (bvd) dtzu-akhd`)" value="-a (bvd) dtzu-akhd">
+    <input type="button" onclick="telephoneCheck(`1(555)555-5555`)" value="1(555)555-5555">
+    <input type="button" onclick="telephoneCheck(`(555)555-5555`)" value="(555)555-5555">
+    <input type="button" onclick="telephoneCheck(`555-5555`)" value="555-5555">
+    <input type="button" onclick="telephoneCheck(`(555)555-5555`)" value="(555)555-5555">
+    <input type="button" onclick="telephoneCheck(`5555555555`)" value="5555555555">
+    <input type="button" onclick="telephoneCheck(`5555555`)" value="5555555">
+    <input type="button" onclick="telephoneCheck(`1 (555) 555-5555`)" value="1 (555) 555-5555">
+    <input type="button" onclick="telephoneCheck(`1 555)555-5555`)" value="1 555)555-5555">
+    <input type="button" onclick="telephoneCheck(`1 555 555 5555`)" value="1 555 555 5555">
+    <input type="button" onclick="telephoneCheck(`1 456 789 4444`)" value="1 456 789 4444">
+    <input type="button" onclick="telephoneCheck(`55555555`)" value="55555555">
+    <input type="button" onclick="telephoneCheck(`(6054756961)`)" value="(6054756961)">
+    <input type="button" onclick="telephoneCheck(`2 (757) 622-7382`)" value="2 (757) 622-7382">
+    <input type="button" onclick="telephoneCheck(`0 (757) 622-7382`)" value="0 (757) 622-7382">
+    <input type="button" onclick="telephoneCheck(`2(555)555-5555`)" value="2(555)555-5555">
+    <input type="button" onclick="telephoneCheck(`1 555-555-5555`)" value="1 555-555-5555">
+    <input type="button" onclick="telephoneCheck(`10 (757) 622-7382`)" value="10 (757) 622-7382">
+    <input type="button" onclick="telephoneCheck(`(555)5(55?)-5555`)" value="(555)5(55?)-5555">
+    <input type="button" onclick="telephoneCheck(`(555-555-5555)`)" value="(555-555-5555)">
+    <input type="button" onclick="telephoneCheck(`(555-)55-5555)`)" value="(555-)55-5555)">
+
+
+
+
+    <input type="button" onclick="telephoneCheck(`avfnjp`)" value="avfnjp">
+    <button onclick="returnFunction(returnvalue)">Return value anzeigen</button>
+    <p id="return"></p>
+</body>
+
+</html>
+</body>
+
+</html>
+<!--1. telephoneCheck("555-555-5555") should return a boolean.
+                                                        telephoneCheck("1 555-555-5555") should return true.
+                                                        telephoneCheck("1 (555) 555-5555") should return true. 
+                                                        telephoneCheck("1 (555)555-5555") should return true. !!!!!!!!!!!!!!!!
+                                                        telephoneCheck("5555555555") should return true.
+                                                        5. telephoneCheck("555-555-5555") should return true.
+                                                        telephoneCheck("(555)555-5555") should return true.
+                                                        telephoneCheck("1(555)555-5555") should return true.
+                                                        telephoneCheck("555-5555") should return false.
+                                                        telephoneCheck("5555555") should return false.
+                                                        10. telephoneCheck("1 555)555-5555") should return false.
+                                                        telephoneCheck("1 555 555 5555") should return true.
+                                                        telephoneCheck("1 456 789 4444") should return true.
+                                                        telephoneCheck("123**&!!asdf#") should return false.
+                                                        telephoneCheck("55555555") should return false.
+                                                        15. telephoneCheck("(6054756961)") should return false !!!!!!!!!!!!!!
+                                                        telephoneCheck("2 (757) 622-7382") should return false.
+                                                        telephoneCheck("0 (757) 622-7382") should return false.
+                                                        telephoneCheck("-1 (757) 622-7382") should return false
+                                                        telephoneCheck("2 757 622-7382") should return false.
+                                                        20. telephoneCheck("10 (757) 622-7382") should return false.
+                                                        telephoneCheck("27576227382") should return false.
+                                                        telephoneCheck("(275)76227382") should return false.
+                                                        telephoneCheck("2(757)6227382") should return false.
+                                                        telephoneCheck("2(757)622-7382") should return false.
+                                                        25. telephoneCheck("555)-555-5555") should return false.
+                                                        26. telephoneCheck("(555-555-5555") should return false.
+                                                        27. telephoneCheck("(555)5(55?)-5555") should return false.
+                                                        -->

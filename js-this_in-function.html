@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+        <h2>The JavaScript <i>this</i> Keyword</h2>
+        <p>In this example, <b>this</b> refers to the window Object: Bei Klick auf den Button, und nur dort,
+        verschwindet dann der Text „“ein Klick … ich bin weg!
+    </p>
+        <p id="demo"></p>
+        
+    <script>
+        let windowobjekt = this;
+        document.getElementById("demo").innerHTML = windowobjekt;
+    </script>
+</body>
+
+</html>

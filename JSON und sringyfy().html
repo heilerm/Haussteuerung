@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        const obj = {
+            prop1: 100,
+            prop2: 200,
+            prop3: 300
+        };
+        const p_tag = document.querySelector("p");
+        //p_tag.innerText = JSON.stringify(obj, null, "xx");
+        /* Ausgabe: {
+            xx"prop1": 100,
+            xx"prop2": 200,
+            xx"prop3": 300
+}       */
+        //p_tag.innerText = JSON.stringify(obj, null, "  ");
+        //p_tag.innerText = JSON.stringify(obj, null, "xx");
+        /* Ausgabe: {
+            "prop1": 100,
+            "prop2": 200,
+            "prop3": 300
+        Nur in Browser F12-Console, gibt es 4 Blanks aus. In Browser selbst ignoriert er die Space-Anzahl
+}       */
+
+        function fn(key, value) {
+            console.log({ key, value })
+            //console.log({ "hallo World, value", a }) // das geht leider nicht
+            return value;
+        }
+        p_tag.innerText = JSON.stringify(obj, fn, "xx");
+
+
+        var stringdata = {
+            "success": true,
+            "message": "working",
+            "data": [{
+                "id": 1,
+                "name": "foo"
+            }]
+        };
+
+        var obj1 = JSON.parse(JSON.stringify(stringdata)); //stingdata ist bereits ein gültiger JSON String. Aber JSON.parse() erwartet einen string
+        // daher das JSON objekt erst in einen String verwandeln mit sringify()
+        var key = "message";
+        alert(obj1[key]);
+        var keyobj = "data";
+        var ArrObj = obj1[keyobj];
+
+        alert(ArrObj[0]);
+        alert(ArrObj[0].id);
+        alert(ArrObj[0].name);
+    </script>
+</body>
+
+</html>

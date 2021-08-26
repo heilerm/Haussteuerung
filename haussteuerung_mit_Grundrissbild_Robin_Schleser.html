@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>   
+    <meta charset="UTF-8">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Document</title>    <style>
+        #hausplan {
+            height: 80vh;
+            position: relative;
+        }
+
+        .lampe {
+            padding: 2px 20px;
+            background-color: white;
+            color: black;
+            position: absolute;
+            top: 70px;
+            left: 300px
+        }
+
+        .lampe p {
+            margin: 0;
+            margin-left: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .lampe * {
+            display: inline-block;
+
+        }
+
+
+        .indicator {
+            width: 30px;
+            height: 30px;
+            border-radius: 1000px;
+            cursor: pointer;
+        }
+
+        .an {
+            background-color: green;
+        }
+
+        .aus {
+            background-color: red;
+        }
+    </style>   
+    <script>     
+        function toggle(element) {
+            var status = element.classList.contains("an"); // Holt sich die Klassenliste und schaut ob dort An drin steht.             
+            var ledName = element.parentNode.children[1].innerText; // Holt ich den Namen der LED. Es wird              
+            console.log(status + " " + ledName);
+            if (status) {
+                element.classList.remove("an");
+                element.classList.add("aus");
+            } else {
+                element.classList.remove("aus");
+                element.classList.add("an");
+            }
+        }
+    </script>
+</head>
+
+<body>
+      <div id="hausplan">     
+        <img style="position: absolute;                     
+                 height:100%" ;
+            src="https://www.schwoererhaus.de/fileadmin/_processed_/3/a/csm_Grundriss-Erdgeschoss-Modernes-Haus-mit-Satteldach_436581f7db.jpg">
+        <div class="lampen">       
+            <div class="lampe" style="top:70px;left:300px;background-color:green ;">
+                <div class="indicator, an" onclick="toggle(this)"></div>         <p>LED 1</p>
+            </div>
+            <div class="lampe" style="top:400px;left:350px;">
+                <div class="indicator, an" onclick="toggle(this)"></div>         <p>LED 2</p>
+            </div>
+            <div class="lampe" style="top:180px;left:600px;">
+                <div class="indicator, aus" onclick="toggle(this)"></div>         <p>LED 3</p>
+            </div>
+            <div class="lampe" style="top:500px;left:650px;">
+                <div class="indicator, an" onclick="toggle(this)"></div>         <p>LED 4</p>
+            </div>
+        </div>   
+    </div>
+</body>
+
+</html>

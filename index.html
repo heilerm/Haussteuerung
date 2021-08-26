@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- das bekommt man mit infach ! im html-Editor das ist das standard HTML3 Skelett
+in VSCode direkt anzeigen statt Alt-B, bzw. Ctrl-Alt-B starte die Extension: Browser preview
+aber das funktioniert nur, wenn man zuvor die html.Seite mit 
+File-Open Folder göffnet hat, weil dann die Browser preview sich auf alle Dateien in 
+diesem Ordner bezieht. Sehe in Browser preview auch file:///c%3A/Users/d020977/...>-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- X-UA-Compatible .. heißt: ja, wir unterstützen auch den IE der dann 
+    man in IE Edge ungenannt wurde. Aber IE/IE Edge ist tot-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        setInterval(function () {
+            location.reload() /*location ist der Browser, der mit der Extension Browser in Studio
+            angezeigt wird, der wird alle 2 sek reloaded */
+        }, 3 * 1000);
+        /*-- !!!!-- kann <script> "</sript> auch in <body>... </body> reinpacken. Geht auch !!!!  --*/
+        document.getElementsByTagName("h1")[0].innerText = "Hallo Robin";
+        document.getElementsByTagName("h1")[0].style.backgroundColor = "yellow";
+        /* wenn gar nix mehr angezeigt wird, Browser ist komplett leer, dann 
+        ist das script korrupt, dann ziegt der Browser gar nix mehr an
+        ";"" am Ende braucht man nur, wenn in eine Zeile 2 oder mehr Anweisungen 
+        geschrieben werden, dann ja. Ist jede Zeile nur 1 Anweisung, dann braucht man
+        das ";" am Ende nicht. Konvention: schreib es immer am Ende der Zeile hin*/
+        var erstesH1Tag = document.getElementsByTagName("h1")[0];
+        erstesH1Tag.innerText = "Hallo Test";
+        function sageHallo() {
+            var sprachrohr = document.getElementsByTagName("h1")[0];
+            sprachrohr.innerText = "Hallo Matthias";
+        }
+
+    </script>
+
+    <style>
+        p {
+            position: absolute;
+            /*-- absolut von Browser Kooordinate (0,0) z.B. left: 200px; oder top:100px; 
+                macht Größe auf 0!!, wenn ich zweites <p> habe, da wegen 
+                position:absolut jetzt alle!! <p> tags die gleiche absolute Position haben
+                stehen die dann übereinander, werden die folgenden alle mit Größe
+                Null angezeit, also nicht angezeigt. Da unten in html noch ein <p> tag ohne 
+                class, und der browser die html Elemente von oben nach unten rendert,
+                wird an der selben absoluten Stelle DL3WH ausgegeben und damit DL0WH 
+                überschrieben. Der erste Style muss position: absolute; haben damit
+                sich die anderen Styles relativ dazu verhalten. Das nachfolgende .p2
+                hat nur top:150px, den rest wie background-color übernimmt er von oebn vom p Style
+                Füge für die anderen eine Klasse hinzu oder ID--> */
+            top: 100px;
+            left: 200px;
+            background-color: rgb(220, 197, 247);
+            color: White;
+            padding: 5px;
+        }
+
+        .p2 {
+            top: 150px;
+        }
+
+        #viertesElement {
+            left: 300px;
+        }
+
+        .menu li:hover {
+            background-color: #e7d90c;
+        }
+
+        .menu ul {
+            list-style-type: circle;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <p>hallo DL0WH</p>
+    <p class="p2">hallo DL1WH</p>
+    <p>hallo DL3WH</p>
+    <p id="viertesElement">hallo DL4WH</p>
+
+    <!-- kann auch: <p class="p2 titel>" machen, das ist in Wahrheit:
+        <p class="p2, titel"> hab damit also 2 Klassen definiert,k
+            die p2 und titel Klasse, d.h. oben in style kann ich tatsächlich
+            .titel {background-color; yellow;} machen
+        "p2 titel" ist eine Klassenliste, sieht man in JS, wenn man auf CSS-Klassen
+    referenziert. Da bekommt man eine Liste zurück, daher heißen die Methode
+    zB. document.getElementsByClassName(), das ist die Pluralsprachweise
+mit STRB Blank bekomme ich. Dort sehe ich auch durchgestrichene Elemente, die 
+-<..> (Minus irgendwas beginnen. Die sind obsolet, daher durchgestrichen und 
+-ms steht für Microsoft, -chr = Chrome, -moz= Firefox/Mozilla)-->
+    <h1> hallole DL0WH Community</h1>
+    <button onclick="sageHallo()">Sag Hallo!</button>
+
+
+
+</body>
+
+</html>

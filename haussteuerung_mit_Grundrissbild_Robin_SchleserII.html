@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #hausplan {
+            height: 80vh;
+            position: relative;
+        }
+
+
+        .lampe {
+            padding: 2px 20px;
+            background-color: white;
+            color: black;
+            position: absolute;
+            top: 70px;
+            left: 300px
+        }
+
+        .lampe p {
+            margin: 0;
+            margin-left: 0px;
+            text-align: center;
+            vertical-align: middle;
+            color: blue;
+
+        }
+
+        lampe * {
+            display: inline-block;
+        }
+
+        .indicator {
+            width: 30px;
+            height: 30px;
+            border-radius: 1000px;
+            cursor: pointer;
+        }
+
+        .an {
+            background-color: green;
+        }
+
+        .aus {
+            background-color: red;
+        }
+    </style>
+    <script>
+        function toggle(element) {
+            var status = element.classList.contains("an");
+            var ledname = element.parentNode.children[1].innerText
+            console.log(status + " " + ledname);
+            if (status) {
+                element.classList.remove("an");
+                element.classList.add("aus");
+            }
+            else {
+                element.classList.remove("aus");
+                element.classList.add("an");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="hausplan">
+        <img style="position: absolute;                     
+        height:120%"
+            src="https://www.schwoererhaus.de/fileadmin/_processed_/3/a/csm_Grundriss-Erdgeschoss-Modernes-Haus-mit-Satteldach_436581f7db.jpg">
+        <div class="lampen">
+            <div class="lampe" style="top:90px; left:450px;">
+                <div class=" indicator an" onclick="toggle(this)"></div>
+                <p>
+                    lampe 1
+                </p>
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</body>
+
+</html>

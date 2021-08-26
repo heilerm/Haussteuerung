@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function romanize(num) {
+            let array = [
+                [1000, "M"],
+                [900, "CM"],
+                [500, "D"],
+                [400, "CD"],
+                [100, "C"],
+                [90, "XC"],
+                [50, "L"],
+                [40, "XL"],
+                [10, "X"],
+                [9, "IX"],
+                [5, "V"],
+                [4, "IV"],
+                [1, "I"],
+            ];
+            console.log("n: ", n);
+            console.log("num: ", num);
+            var n = parseInt(document.getElementById('text-input').value)
+            console.log("type of Eingabewert: ", typeof num);
+            console.log("type of n: ", typeof n);
+            console.log("n: ", n);
+            if (isNaN(num)) {
+                text = "keine Zahl eingegeben. Bitte nochmals mit Zahlen versuchen";
+                return text;
+            };
+            if (num == 0) {
+                return "";
+            }
+            for (let i = 0; array.length; i++) {
+                console.log("array[i][0]:", array[i][0])
+                if (num >= array[i][0]) {
+                    console.log("num", num, " > :", array[i][0])
+                    console.log("zwischenergebnis. ", array[i][1]);
+                    num1 = (array[i][1] + romanize(num - array[i][0]));
+                    /* return (array[i][1] + romanize(num - array[i][0])); */
+                    return num = num1;
+
+                }
+            };
+        }
+    </script>
+
+</head>
+
+<body>
+    <input type="button" onclick="romanize(34)" value="34 soll in römische Zahlen umgerechnet werden">
+    <p id="roman"></p>
+
+    <input id="text-input" type="text">
+    <button id="convert-button"
+        onClick="var n = parseInt(document.getElementById('text-input').value);document.getElementById('text-output').value = romanize(n);">Convert!</button>
+    <!-- geht nicht: ein <input> Tag  hat kein Attribut innerText oder auch inerHTML, das man per JS setzen könnte. Er setzt es zwar, aber da es nicht vorgesehen ist,
+         wird es einfach nicht ausgeben. Siehe in F12 Dev.Tools unter "Elements" Tab
+         <button id="convert-button" -->
+    <!--onClick="var n = parseInt(document.getElementById('text-input').value);document.getElementById('text-output').innerText = romanize(n);">Convert
+        mit innerHTML!</button>
+        -->
+    <input id="text-output" style="display:block" type="text">
+</body>
+
+</html>

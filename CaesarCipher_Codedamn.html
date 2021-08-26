@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkletter2(letter) {
+            return letter == anyletter;
+        };
+        function checkletter(item, index) {
+            if (strUC[s] == item) {
+                return index1 = index;
+            };
+        };
+        function rot13(str) {
+            array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+            strUC = str.toUpperCase();
+            let str_decoded = [];
+            for (s = 0; s <= strUC.length; s++) {
+                if (strUC[s] == " ") {
+                    console.log("s nach der Verschiebung:", str_decoded);
+                    str_decoded[s] = " ";
+
+
+                }
+                else if (strUC[s] == "!") {
+                    console.log("s nach der Verschiebung:", str_decoded);
+                    str_decoded[s] = "!";
+                }
+                else if (strUC[s] == ".") {
+                    console.log("s nach der Verschiebung:", str_decoded);
+                    str_decoded[s] = ".";
+                }
+                else if (strUC[s] == "?") {
+                    console.log("s nach der Verschiebung:", str_decoded);
+                    str_decoded[s] = "?";
+                }
+                else {
+                    let index = array.forEach(checkletter)   /* kann leider nicht direkt letter übergeben, findIndex() erwartet eine
+                        function Returns index */
+
+
+
+                    console.log("s vor der Verschiebung:", strUC[s]);
+                    /* jetzt die Position des gefundenen Buchstabens in array finden, A z.B. Index = 0 */
+                    str_decoded[s] = array[(index1 + 13) % 26];
+                    console.log("s nach der Verschiebung:", str_decoded[s]);
+                    console.log("s nach der Verschiebung:", str_decoded);
+                    continue;
+
+                };
+
+                /* const ages = [3, 10, 18, 20];
+                ages.findIndex(checkAge)   // Returns 3
+                function checkAge(age) {
+                    return age > 18;
+                } */
+                /*const fruits = ["apple", "orange", "cherry"];
+                fruits.forEach(myFunction);
+        
+                document.getElementById("demo").innerHTML = text;
+                */
+
+                /*function myFunction(item, index) {
+                    if (item = fruits[index]) {
+                        text += index + ": " + item + "<br>";
+                    }
+                }
+                */
+
+
+
+
+            };
+            str = str_decoded.join("");
+            /* console.log("returned String: ", str); */
+            console.log("returned String: ", str.substring(0, str.length - 1));
+            return str.substring(0, str.length - 1);
+        };
+
+
+
+    </script>
+
+</head>
+
+<body>
+    <input type="button" onclick="rot13(`SERR CVMMN!`)" value="Click to decode the text SERR CVMMN!">
+    <input type="button" onclick="rot13(`SERR PBQR PNZC`)" value="Click to decode the text SERR PBQR PNZC">
+    <input type="button" onclick="rot13(`SERR YBIR?`)" value="Click to decode the text SERR YBIR?">
+    <input type="button" onclick="rot13(`GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.`)"
+        value="Click to decode the text GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.">
+
+
+
+</body>
+
+</html>

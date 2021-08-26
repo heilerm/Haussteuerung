@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- wichtig wegen Sonderzeichen -->
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h3>Array Methode concat()</h3>
+    <p>Die Methode concat() fügt Arrays zusammen. </br>
+        Falls "open in Browser Preview nicht funktioniert ggf. einfach ein 2tes Mal durchführen"
+    </p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+
+    <script>
+        const array1 = ["Robin", "Lukas", "Matthias"];
+        const array2 = ["Frédéric", "Joshua"];
+        // const zusammen = array1.concat(array2);
+        const zusammen = array1 + "," + array2; // so fügt man noch Komma zwischen die Arrays
+        window.document.getElementById("demo1").innerHTML // window vor document braucht man bekanntlich nicht
+            = array1;
+        window.document.getElementById("demo2").innerHTML
+            = array2;
+        window.document.getElementById("demo3").innerHTML
+            = zusammen;
+        
+    </script>
+</body>
+
+</html>

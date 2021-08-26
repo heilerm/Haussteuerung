@@ -1,0 +1,33 @@
+!DOCTYPE html>
+<html>
+
+<body>
+    <h2>The JavaScript <i>this</i> Keyword</h2>
+    <p>In this example, <b>this</b> represents the
+        person object that "owns" the myFunction method.</p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <script>
+        // Create an object:
+        const person = {
+            firstName: "John",
+            lastName: "Doe",
+            id: 5566,
+            myFunction: function () {
+                // this ist implizit bekannt:
+                return this; // ich hätte als return-Wert den Namen des Objekts, hier person erwartet. bekomme aber als return-Wert [object Object] zurück
+            }
+        };
+        // Display data from the object:
+        document.getElementById("demo1").innerHTML =
+            person.myFunction();
+
+        document.getElementById("demo2").innerHTML =
+            person.myFunction().firstName;
+        document.getElementById("demo3").innerHTML =
+            person.myFunction().myFunction;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* Globale Variablen sind im gesamten Dokument gültig und stehen jederzeit zur Verfügung. 
+           Wenn innerhalb von Funktionen Variablen ohne ein lokal machendes Schlüsselwort (var, let oder const)
+           deklariert werden, dann sind diese Variablen global. 
+           Wird eine var Deklaration außerhalb einer Funktion ausgeführt, erzeugt das ebenfalls eine 
+           globale Variable.*/
+        var returnvalue = "true";
+        function telephoneCheck(str) {
+            /* check if there is a non-numeric value in it*/
+            let allowedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "(", ")"];
+            let onlyNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            let notAllowedValues = ["a", "b", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",];
+            let numberArray = [];
+            let newArray = [];
+            var validNumber = true;
+
+            /* var einArray = ['Peter', 'Paul', 'Mary'];
+               console.log(einArray.indexOf('Paul')); */
+
+            /* Brutaler Weg: */
+            /* for (let i = 0; i <= str.length - 1; i++) {
+                console.log("str[i]:", i, str[i]);
+                if (allowedValues.indexOf(str[i]) > -1)
+                    console.log(allowedValues.indexOf(str[i]));
+                else {
+                    console.log("not allowed:", console.log(allowedValues.indexOf(str[i])));
+                    valdiNumber = false;
+
+                };
+            };
+            */
+            /* let str = "How are you doing today?";
+        const myArr = str.split(" "); splittet den string str in ein array myArr lässt den String aber unverändert */
+
+
+            /* eleganter - funktioniert jetzt mit array.includes() */
+            /* check if there is a non-numeric value in it*/
+            /* der in-Operator, gibt true zurück wenn eine Eigenschaft(!) im Objekt, */
+            /* hier allowedValues vorhanden ist. Aber z.B. "-" ist keine Eigenschaft */
+            /* hingegen 1. Das wäre der erste Wert, 9 der 9te Wert usw. in allowedValues */
+            /* Die includes() Methode funktioniert */
+            /* ABER!!!!!!!!!!!!!!!!!!!!!!!         */
+            /* die For Schleifeist wichtig: Keine for (let x in str), sondern for (let x of str)         */
+            /* nur bei der  for (let x of str) enthält x den Wert am Index 1--n des Strings str.*/
+            /* ähnlich wie der in-Operator im if(statement) also: if (char in allowedValues) da ist char auch nicht der Wert der gegen allowedVAlues verglichen werden soll
+            /* das waren für mich die 2 wichtigen Lehren aus dem Bsp. und am Rande noch eine dritte. */
+            /* Das hier kann ganz schön komplizierte Logik werden. daher besser mit regex arbeiten, die machen das von der Logik her erheblich einfacher, */
+            /* daber dazu muss man regex verstanden haben */
+            /* die LEHREN in dem Bsp.:  */
+            /* 1: - for (let x of string) */
+            /* 2: - if (array[].includes(x) {} */
+            /* 3: - regex lernen  */
+
+            for (let char of str) {
+                if (allowedValues.includes(char)) {
+                    console.log(`Char is present`, str[char]);
+
+                }
+                else {
+                    console.log(`Char is not present`, str[char]);
+                    validNumber = false;
+                    returnvalue = "false";
+
+                };
+
+            };
+            /* jetzt prüfen ob erstes element = "-" */
+            if (str[0] == "-") {
+                returnvalue = "false";
+
+            };
+            console.log("return value:", returnvalue);
+
+            /* Prüfe, ob erstes Zeichen = "1". Wenn ja nimm es raus 
+               hier kommt man nur rein, wenn am Anfang kein "-" war*/
+            if (str[0] == "1") {
+                console.log("str.length", str.length);
+                strNew = str.slice(1, str.length)
+                console.log("strNew = neuer String mit der führenden 1 weggelassen", strNew);
+                /* mache jetzt mit dem newStr weiter. Das erste Zeichen war eine "1" und wurde abgeschnitten */
+                /* wenn zweites erstes und 5tes oder 2tes und 6tes Element = ( und ) dann okay
+                   nimm sie raus und prüfe dann ob Ziffern das Format 3 (Area Code), 3 (Central Office),4 (Subscriber) haben*/
+                /* wenn ein "(" aber kein ")" oder nur ein "(" oder nur ein ")" dann beenden*/
+                if (strNew.includes("(") && !(strNew.includes(")"))) {
+                    returnvalue = "false";
+                    console.log(`return value, weil ein "(" und kein ")" kam:`, returnvalue);
+                };
+                if (strNew.includes(")") && !(strNew.includes("("))) {
+                    returnvalue = "false";
+                    console.log(`return value, weil ein ")" und kein "(" kam:`, returnvalue);
+                };
+                if (strNew[0] == "(" && (strNew.includes(")"))) {
+                    returnvalue = "false";
+                    console.log(`return value, weil an erster Stelle ein "(" und kein ")" kam:`, returnvalue);
+                };
+
+                if (strNew[0] == "(" && (strNew[4] = ")")) {
+                    strNew_wo_Parenthese = strNew.slice(1, strNew.length); /* slice(start, end)*/
+                    strNew_ab_rightParenthese = strNew.slice(5, strNew.length);
+                };
+
+                if (strNew[0] == "(" && (strNew[4] = ")")) { /* "(123)"" */
+                    strNew_wo_Parenthese = strNew.slice(1, strNew.length); /* slice(start, end)*/
+                    strNew_ab_rightParenthese = strNew.slice(5, strNew.length);
+
+                }
+                else if (strNew[1] == "(" && (strNew[5] = ")")) { /* " (123)"" */
+                    strNew_wo_Parenthese = strNew.slice(1, strNew.length); /* slice(start, end)*/
+                    strNew_ab_rightParenthese = strNew.slice(5, strNew.length);
+                }
+                /* jetzt alles rausmehmen und den Rest prüfen ob 3-3-4 Format vorhanden*/
+                for (let char of strNew) {
+                    if (onlyNumbers.includes(char)) {
+                        console.log(`number is present`, char);
+                        numberArray.push(char)
+
+                    }
+                    else {
+                        console.log(`no number`, char);
+                        validNumber = false;
+                        returnvalue = "false";
+
+                    };
+
+                };
+
+                let areaCode = numberArray.slice(0, 3);
+                for (char of areaCode) {
+                    if (onlyNumbers.includes(char)) {
+                        console.log(`areaCode[char] is number`, char);
+                    }
+                    else {
+                        console.log(`areaCode[char] is not a number`, areaCode);
+                        validNumber = false;
+
+                    };
+
+                };
+                centralOffice = numberArray.slice(3, 6); /* das sind die 3 Zeichen danach  */
+
+                subscriberNumber = numberArray.slice(6, 10); /* das sind die letzten 4 Zeichen danach  */
+                for (char of subscriberNumber) {
+                    if (onlyNumbers.includes(char)) {
+                        console.log(`subscriberNumber[char] is number`, char);
+                    }
+                    else {
+                        console.log(`subscriberNumbere[char] is not a number`, char);
+                        validNumber = false;
+
+                    };
+
+                };
+                return validNumber;
+            }
+
+
+            /* prüfen, ob () oder str[0] NE 1 */
+            /* hier kommt man nur rein, wenn erstes Zeichen NE 1*/
+            else if (strNew[0] !== "(") {
+                returnvalue = "false";
+                console.log(`erste Stelle war keine 1 und keine "(" return value:`, returnvalue);
+                console.log(`strNew[0]: :`, strNew[0]);
+                console.log(`strNew["0"]: :`, strNew["0"]);
+
+            };
+
+        };
+        function returnFunction(value) {
+
+            document.getElementById("return").innerText = "Return value: " + value;
+            returnvalue = "true";
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="button" onclick="telephoneCheck(`1 234-567-8901`)" value="1 234-556-8901">
+    <input type="button" onclick="telephoneCheck(`1 (234) 567-8901`)" value="1 (234) 567-8901">
+    <input type="button" onclick="telephoneCheck(`1234567890`)" value="1234567890">
+    <input type="button" onclick="telephoneCheck(`123-456-7890`)" value="123-456-7890">
+    <input type="button" onclick="telephoneCheck(`(123)456-7890`)" value="(123)456-7890">
+    <input type="button" onclick="telephoneCheck(`123-(456-78901`)" value="123-(456-78901">
+    <input type="button" onclick="telephoneCheck(`123**&!!asdf#`)" value="123**&!!asdf#">
+    <input type="button" onclick="telephoneCheck(`-1 (757) 622-7382`)" value="-1 (757) 622-7382">
+    <button onclick="returnFunction(returnvalue)">Return value anzeigen</button>
+    <p id="return"></p>
+</body>
+
+</html>
+<!--1. telephoneCheck("555-555-5555") should return a boolean.
+                                                        telephoneCheck("1 555-555-5555") should return true.
+                                                        telephoneCheck("1 (555) 555-5555") should return true.
+                                                        telephoneCheck("5555555555") should return true.
+                                                        5. telephoneCheck("555-555-5555") should return true.
+                                                        telephoneCheck("(555)555-5555") should return true.
+                                                        telephoneCheck("1(555)555-5555") should return true.
+                                                        telephoneCheck("555-5555") should return false.
+                                                        telephoneCheck("5555555") should return false.
+                                                        10. telephoneCheck("1 555)555-5555") should return false.
+-->

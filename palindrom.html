@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindorm = wort vorwärts = wort rückwärts</title>
+    <script>
+        function palindrome(word) {
+            let reversedInput = "";
+            console.log("test");
+            wordUpperCase = word.toUpperCase();
+            /* alle non-numeric Zeichen rausnehmen*/
+            /* var patt1 = /\w/g;
+               var result = str.match(patt1);
+               result = G,i,v,e,1,0,0, (blank und ! fehlen) */
+            let inputArray = wordUpperCase.match(/\w/g); /* input = array !!*/
+            console.log("inputArray: ", inputArray);
+            /*Konvertiere in einen String, dann kann man split() und join()( darauf machen). */
+            input = inputArray.toString();
+            input_wo_ = input.replace("_", "");
+            let inputClean = input_wo_.split(",").join("");
+            console.log("inputClean: ", inputClean)
+            /* jetzt umdrehen und dann mit inputClean vergleiche und true/false zurückgeben  */
+            for (let i = inputClean.length - 1; i >= 0; i--) {
+                console.log("inputClean[i]: ", inputClean[i])
+                reversedInput += inputClean[i];
+                console.log("reversedInput: ", reversedInput)
+            };
+            if (reversedInput == inputClean) {
+                return true;
+
+            }
+            else return false;
+        };
+
+    </script>
+
+</head>
+
+<body>
+    <input id="input" type="text" title="hier palindrom z.B. race Car eingeben" value="rac eCar" ,
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input`).value)">
+    <input id="input1" type="text" title="hier palindrom z.B. race Car eingeben" value="eye"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input1`).value)">
+    <input id="input2" type="text" title="hier palindrom z.B. race Car eingeben" value="_eye"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input2`).value)">
+    <input id="input3" type="text" title="hier palindrom z.B. race Car eingeben" value="not a palindrome"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input3`).value)">
+
+    <input id="input4" type="text" title="hier palindrom z.B. race Car eingeben" value="not a palindrome"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input4`).value)">
+    <input id="input5" type="text" title="hier palindrom z.B. race Car eingeben" value="A man, a plan, a canal. Panama"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input5`).value)">
+    <input id="input6" type="text" title="hier palindrom z.B. race Car eingeben" value="never odd or even"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input6`).value)">
+    <input id="input7" type="text" title="hier palindrom z.B. race Car eingeben" value="nope"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input7`).value)">
+    <input id="input8" type="text" title="hier palindrom z.B. race Car eingeben" value="almostomla"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input8`).value)">
+    <input id="input9" type="text" title="hier palindrom z.B. race Car eingeben" value="My age is 0, 0 si ega ym."
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input8`).value)">
+    <input id="input10" type="text" title="hier palindrom z.B. race Car eingeben" value="1 eye for of 1 eye."
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input10`).value)">
+    <input id="input11" type="text" title="hier palindrom z.B. race Car eingeben" value="0_0 (: /-\ :) 0-0"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input11`).value)">
+    <input id="input12" type="text" title="hier palindrom z.B. race Car eingeben" value="ive|_/|four"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input12`).value)">
+    <input id="input13" type="text" title="hier palindrom z.B. race Car eingeben" value="123456.6754321"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input13`).value)">
+
+    <button id="button"
+        onclick="document.getElementById(`output`).value = palindrome(document.getElementById(`input`).value)"> click to
+        check! </button>
+    </br>
+    <input id="output" type="text">
+</body>
+
+</html>

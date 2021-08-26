@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekursionen</title>
+
+
+</head>
+
+<body>
+    <input type="text" id="field1" value="3"><br>
+    <script>
+        let result1 = document.getElementById("field1").value
+    </script>
+    <input type="button" , onclick=`computeFactorial(result1)` value="rekursive Funktion starten">
+    <p id="result"></p>
+
+    <script>
+        /* let result1 = document.getElementById("field1").value */
+        let result = (function computeFactorial(number) {
+            if (number <= 1) {
+                return 1;
+            }
+            return number * computeFactorial(number - 1);
+
+        }(3));
+
+    </script>
+    <script>
+
+
+        console.log('Result ' + result1);
+        document.getElementById("result").innerHTML = result1;
+        console.log('Result ' + result);
+        document.getElementById("result").innerHTML = result;
+    </script>
+</body>
+
+</html>

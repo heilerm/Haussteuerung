@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>convertToRoman ohne spiken</title>
+    <script>
+        function convertToRoman(num) {
+            let array = [["M", 1000], ["CM", 900], ["D", 500], ["CD", 400], ["C", 100], ["XC", 90], ["L", 50], ["XL", 40], ["x", 10], ["IX", 9], ["V", 5], ["IV", 4], ["I", 1]];
+
+            if (num == 0) {
+                return "";
+            };
+            for (let i = 0; i < array.length; i++) {
+                console.log("i:", i);
+                console.log(array[i][1]);
+
+                if (num >= array[i][1]) {
+
+                    /*num = (array[i][0] + convertToRoman(num - array[i][1]));*/
+                    return num = (array[i][0] + convertToRoman(num - array[i][1]));
+                };
+
+
+            };
+            return num;
+        };
+    </script>
+
+</head>
+
+<body>
+    <input id="eingabe" type="text">
+    <button id="button"
+        onclick="var n = document.getElementById(`eingabe`).value; document.getElementById(`ausgabe`).value = convertToRoman(n)">convert!</button>
+    <input id="ausgabe" type="text">
+</body>
+document.getElementsByTagName("head")[0];
+
+</html>

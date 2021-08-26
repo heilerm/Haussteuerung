@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function telephoneCheck(str) {
+            /* check if there is a non-numeric value in it*/
+            let allowedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "(", ")"];
+            let onlyNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            let notAllowedValues = ["a", "b", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",];
+            let numberArray = [];
+            let newArray = [];
+            var validNumber = true;
+            /* var einArray = ['Peter', 'Paul', 'Mary'];
+               console.log(einArray.indexOf('Paul')); */
+
+            /* Brutaler Weg: */
+            for (let i = 0; i <= str.length - 1; i++) {
+                console.log("str[i]:", i, str[i]);
+                if (allowedValues.indexOf(str[i]) > -1)
+                    console.log(allowedValues.indexOf(str[i]));
+                else {
+                    console.log("not allowed:", console.log(allowedValues.indexOf(str[i])));
+                    valdiNumber = false;
+
+                };
+            };
+            /* let str = "How are you doing today?";
+            const myArr = str.split(" "); splittet den string str in ein array myArr lässt den String aber unverändert */
+
+
+            /* eleganter   */
+            /* check if there is a non-numeric value in it*/
+            /* if (string in array)geht nicht prüft auf einen Inhalt, sondern ob die Property stringwert in */
+            /* array und das gibt es nicht. Es gibt einen Index, wenn also str[char] eine Zahl liest er das */
+            /* als Index prüft, ob array[index] existiert oder length ist eine Property eines array, aber */
+            /* eben nicht der Wert an einer Stelle im Array. */
+            /* Den bekommt man mit array.includes(wert) siehe unten*/
+
+            /* for (char in str) {
+                if (str[char] in allowedValues) {
+                    console.log(`Char is present`, str[char]);
+ 
+                }
+                else {
+                    console.log(`Char is not present`, str[char]);
+                    validNumber = false;
+                };
+ 
+            };
+            */
+            for (let char of str) {
+                if (allowedValues.includes(char)) {
+                    console.log(`Char is present`, str[char]);
+
+                }
+                else {
+                    console.log(`Char is not present`, str[char]);
+                    validNumber = false;
+                };
+
+            };
+            if (validNumber == false) {
+                console.log("invalid number given")
+            }
+            else {
+                console.log("valid number given")
+
+            };
+            /* console.log("Test 2 - 7 erfolgreich passiert"); */
+            /* check if there is a 1 at position one*/
+
+            /* let str = "Hello world, welcome to the universe."; */
+            /* if ((str.includes(("1") || ("2") || ("3") || ("4") || ("5") || ("6") || ("7") || ("8") || ("9") || ("-") || ("(") || (")") || ("0")))) {
+                console.log("nur erlaubte Zeichen");
+            } 
+             // Returns true */
+
+            /* else {
+                console.log("enthält unerlaubte Zeichen")
+            };
+            */
+
+
+
+            if (str[0] == "1") {
+                console.log("position 1 = 1")
+            }
+            else {
+                console.log("position 1 NE 1 it is:", str[0])
+                validNumber = false;
+            };
+
+            /* check if there is a "1 " or "1 (" or "1( " at position one - three*/
+            /* hole ersten 3 Zeichen */
+            let pos1_3 = str.slice(0, 3);
+            let pos1_2 = str.slice(0, 2);
+            if (pos1_2 == "1 " || pos1_2 == "1(" || pos1_3 == "1 (" || pos1_3 == "1( ") {
+                console.log("pos1_2 und pos1_3 passiert", pos1_3)
+            }
+            else {
+                console.log("pos1_2 und pos1_3 nicht passiert", pos1_3);
+            };
+            /* Idee: prüfe, ob erstes Zeichen = "(" dann false. = Prüfung 15., Schon mit Prüfung auf erstes Zeichen NE 1 
+            prüfe ob ersten 2 Zeichen "-<zahl>" dann false = Prüfung 18
+            prüfe erstes Zeichen: Wenn "1" dann okay, 
+               dann nimm die 1 raus und ebenso alle " ", "(", ")", "-" raus damit nur noch Ziffern bleiben
+               jetzt prüfe, ob Länge = 10 
+            */
+            let pos1 = str.slice(0, 1);
+            if (pos1 == "(") {
+                console.log(`erstes Zeichen = \"(\"`);
+                validNumber = false;
+            };
+            if (pos1 == "-") {
+                console.log(`erstes Zeichen = \"-\"`);
+                validNumber = false;
+            };
+
+            for (chara in str) {
+                if (str[chara] in onlyNumbers) {
+                    console.log(`Char is number`, str[chara]);
+                    /* baue neues array auf, das nur Ziffern hat durch push (am Ende hinzufügen) eines leeren arrays*/
+                    numberArray.push(str[chara]);
+
+                }
+                else {
+                    console.log(`Char is not a number`, str[chara]);
+
+                };
+
+            };
+            /* jetzt prüfen ob erstes element = 1, dann rausnehmen, da schon geprüft
+               will nur sehen, ob die folgenden 3, 4, 3 Zeichen nur Ziffern, dann sollte alles okay sein */
+            if (numberArray[0] == 1) {
+                numberArray.shift() /*shift = genau erstes Element löschen */
+            };
+            /* jetzt prüfen, ob an der ersten und 4ten Stelle ein "(" und ")", dann auch okay*/
+            let parentheseLeft = "(";
+            let parentheseRightt = ")";
+
+            if ((numberArray[0] == parentheseLeft) && (numberArray[3] == parentheseRight)) {
+                console.log("parenthese correct");
+            };
+            if ((numberArray[0] == parentheseLeft) && (numberArray[3] != parentheseRight)) {
+                console.log("parenthese right incorrect");
+                validNumber = false;
+            };
+            if ((numberArray[0] != parentheseLeft) && (numberArray[3] == parentheseRight)) {
+                console.log("parenthese left incorrect");
+                validNumber = false;
+            };
+            let areaCode = numberArray.slice(0, 3);
+            for (chara in areaCode) {
+                if (areaCode[chara] in onlyNumbers) {
+                    console.log(`Char is number`, areaCode[chara]);
+                }
+                else {
+                    console.log(`Char is not a number`, areaCode[chara]);
+                    validNumber = false;
+
+                };
+
+            };
+            centralOffice = numberArray.slice(3, 6); /* das sind die 3 Zeichen danach  */
+            for (chara in centralOffice) {
+                if (centralOffice[chara] in onlyNumbers) {
+                    console.log(`Char is number`, centralOffice[chara]);
+                }
+                else {
+                    console.log(`Char is not a number`, centralOffice[chara]);
+                    validNumber = false;
+
+                };
+
+            };
+            subscriberNumber = numberArray.slice(6, 10); /* das sind die letzten 4 Zeichen danach  */
+            for (chara in subscriberNumber) {
+                if (subscriberNumber[chara] in onlyNumbers) {
+                    console.log(`Char is number`, subscriberNumber[chara]);
+                }
+                else {
+                    console.log(`Char is not a number`, subscriberNumber[chara]);
+                    validNumber = false;
+
+                };
+
+            };
+            return validNumber;
+        };
+
+        /* telephoneCheck('155-(*555-58855'); */
+        /*
+                                                        1. telephoneCheck("555-555-5555") should return a boolean.
+                                                        telephoneCheck("1 555-555-5555") should return true.
+                                                        telephoneCheck("1 (555) 555-5555") should return true.
+                                                        telephoneCheck("5555555555") should return true.
+                                                        5. telephoneCheck("555-555-5555") should return true.
+                                                        telephoneCheck("(555)555-5555") should return true.
+                                                        telephoneCheck("1(555)555-5555") should return true.
+                                                        telephoneCheck("555-5555") should return false.
+                                                        telephoneCheck("5555555") should return false.
+                                                        10. telephoneCheck("1 555)555-5555") should return false.
+                                                        telephoneCheck("1 555 555 5555") should return true.
+                                                        telephoneCheck("1 456 789 4444") should return true.
+                                                        telephoneCheck("123**&!!asdf#") should return false.
+                                                        telephoneCheck("55555555") should return false.
+                                                        15. telephoneCheck("(6054756961)") should return false
+                                                        telephoneCheck("2 (757) 622-7382") should return false.
+                                                        telephoneCheck("0 (757) 622-7382") should return false.
+                                                        telephoneCheck("-1 (757) 622-7382") should return false
+                                                        telephoneCheck("2 757 622-7382") should return false.
+                                                        20. telephoneCheck("10 (757) 622-7382") should return false.
+                                                        telephoneCheck("27576227382") should return false.
+                                                        telephoneCheck("(275)76227382") should return false.
+                                                        telephoneCheck("2(757)6227382") should return false.
+                                                        telephoneCheck("2(757)622-7382") should return false.
+                                                        25. telephoneCheck("555)-555-5555") should return false.
+                                                        26. telephoneCheck("(555-555-5555") should return false.
+                                                        27. telephoneCheck("(555)5(55?)-5555") should return false.
+                                                        */
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <input type="button" onclick="telephoneCheck(`155-(555-58855`)" value="155-(555-58855">
+    <input type="button" onclick="telephoneCheck(`123**&!!asdf#`)" value="123**&!!asdf#">
+
+
+</body>
+
+</html>

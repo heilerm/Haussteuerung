@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h3>JavaScript einfaches Objekt</h3>
+    <h3>Zugriff mit Objekt-Methode</h3>
+    <p id="demo"></p>
+        
+    <script>
+        // Literales Objekt ausprägen:
+        // ggf. "Browser Preview 2 mal starten, da er es beim erstem Mal nicht immer anzeigt"
+        const informatiker =
+        {
+            vorname: "Robin",
+            zuname: "Schleser",
+            getName: function () {
+                return this.vorname + " " +
+                    this.zuname
+            }
+        };
+        // Einfacher Zugriff auf Methode:
+        document.getElementById("demo").innerHTML =
+            "Name: " + informatiker.getName();
+        // Hier wird der statische Wert dynamisch in der function() erzeugt.
+        // Das ist gute OO Programmierung. Nicht die Attribute an-/ausgeben,
+        // sondern eine getter- oder setter-Methode auf die Attribute aufrufen
+
+    </script>
+</body>
+
+</html>
